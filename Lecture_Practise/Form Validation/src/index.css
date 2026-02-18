@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer components{
+   .sub-heading{
+    @apply  p-2 text-2xl bg-purple-900 font-bold container text-white my-4
+  }
+  .heading{
+    @apply text-center p-4 text-4xl bg-purple-500 font-bold text-white
+  }
+  .btn{
+    @apply text-white bg-purple-900 text-center font-bold px-10 py-4 rounded-full
+  }
+  .center{
+    @apply h-screen container mx-auto bg-blue-400
+  }
+}
