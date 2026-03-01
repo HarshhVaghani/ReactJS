@@ -1,17 +1,18 @@
 import { Search, User, Heart, ShoppingCart, MapPin, LayoutGrid, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"
 
 export default function Navbar() {
   return (
     <header className="w-full bg-white font-sans">
       <div className="max-w-[1440px] mx-auto px-10 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-2 group cursor-pointer">
+        <Link to="/" className="flex items-center gap-2 group cursor-pointer">
           <img
             src={logo}
             alt="Blueberry Logo"
             className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
           />
-        </div>
+        </Link>
 
         <div className="flex-1 max-w-xl mx-12 flex items-center bg-gray-50 border border-gray-100 rounded-lg px-4 py-2.5">
           <select className="bg-transparent text-sm font-semibold text-gray-500 outline-none border-r border-gray-200 pr-4 mr-4">
@@ -26,9 +27,15 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-8">
-          <NavItem icon={<User />} label="Account" value="Login" />
-          <NavItem icon={<Heart />} label="3 Items" value="Wishlist" />
-          <NavItem icon={<ShoppingCart />} label="4 Items" value="Cart" />
+          <Link to="/login">
+            <NavItem icon={<User />} label="Account" value="Login" />
+          </Link>
+          <Link to="/wishlist">
+            <NavItem icon={<Heart />} label="3 Items" value="Wishlist" />
+          </Link>
+          <Link to="/cart">
+            <NavItem icon={<ShoppingCart />} label="4 Items" value="Cart" />
+          </Link>
         </div>
       </div>
 
@@ -38,13 +45,22 @@ export default function Navbar() {
             <LayoutGrid size={20} />
           </div>
           <nav className="flex gap-8 text-[14px] font-semibold text-gray-600">
-            <a href="#" className="text-brand-blue border-b-2 border-brand-blue pb-1">Home</a>
-            {['Categories', 'Products', 'Pages', 'Blog'].map(item => (
-              <a key={item} href="#" className="flex items-center gap-1 hover:text-brand-blue transition">
-                {item} <ChevronDown size={14} />
-              </a>
-            ))}
-            <a href="#" className="flex items-center gap-1 hover:text-brand-blue transition">🎁 Offers</a>
+            <Link to="/" className="text-brand-blue border-b-2 border-brand-blue pb-1">Home</Link>
+            <Link to="/category" className="flex items-center gap-1 hover:text-brand-blue transition">
+              Categories <ChevronDown size={14} />
+            </Link>
+            <Link to="/shop" className="flex items-center gap-1 hover:text-brand-blue transition">
+              Products <ChevronDown size={14} />
+            </Link>
+            <Link to="/about" className="flex items-center gap-1 hover:text-brand-blue transition">
+              About <ChevronDown size={14} />
+            </Link>
+            <Link to="/faq" className="flex items-center gap-1 hover:text-brand-blue transition">
+              FAQ <ChevronDown size={14} />
+            </Link>
+            <Link to="/contact" className="flex items-center gap-1 hover:text-brand-blue transition">
+              Contact
+            </Link>
           </nav>
         </div>
 

@@ -17,13 +17,13 @@ import BlackPepper from "../assets/newarrival/blackpepperspice.jpg";
 import BlackPepperHover from "../assets/newarrival/blackpeppespicehover.jpg";
 
 import Cardamon from "../assets/newarrival/cardamon.jpg";
-import CardamonHover from"../assets/newarrival/cardamonhover.jpg";
+import CardamonHover from "../assets/newarrival/cardamonhover.jpg";
 
-import ChilliFlakes from"../assets/newarrival/chilliflakes.jpg";
-import ChilliFlakesHover from"../assets/newarrival/chillflakeshover.jpg";
+import ChilliFlakes from "../assets/newarrival/chilliflakes.jpg";
+import ChilliFlakesHover from "../assets/newarrival/chillflakeshover.jpg";
 
-import TomatoKetchup from"../assets/newarrival/tometoketchup.jpg";
-import TomatoKetchupHover from"../assets/newarrival/tometoetchuphover.jpg";
+import TomatoKetchup from "../assets/newarrival/tometoketchup.jpg";
+import TomatoKetchupHover from "../assets/newarrival/tometoetchuphover.jpg";
 
 const categories = ['All Products', 'Juices & Drinks', 'Snacks & Sweets', 'Spices & Sauces'];
 
@@ -115,22 +115,51 @@ export default function NewArrivals() {
 
   return (
     <section className="max-w-[1440px] mx-auto px-10 py-20 font-sans">
-      
+
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-100 pb-6">
+      {/* Top Section */}
+      <div className="flex flex-col md:flex-row justify-between md:items-end gap-6 border-b border-gray-200 pb-6">
+
+        {/* Left Content */}
         <div>
-          <h2 className="text-4xl font-black text-slate-800">
-            New <span className="text-brand-blue font-medium">Arrivals</span>
+          <h2 className="text-4xl font-bold text-slate-800 tracking-tight">
+            New{" "}
+            <span className="text-blue-600 font-medium">
+              Arrivals
+            </span>
           </h2>
-          <p className="text-gray-400 text-sm mt-2">Check out our latest organic collection</p>
+
+          <p className="text-gray-400 text-sm mt-2">
+            Shop online for new arrivals and get free shipping!
+          </p>
         </div>
+
+        {/* Right Categories */}
+        <div className="flex flex-wrap gap-4 text-sm font-medium text-gray-500">
+          <button className="hover:text-blue-600 transition duration-200">
+            All
+          </button>
+          <span>/</span>
+          <button className="text-blue-600">
+            Snack & Spices
+          </button>
+          <span>/</span>
+          <button className="hover:text-blue-600 transition duration-200">
+            Fruits
+          </button>
+          <span>/</span>
+          <button className="hover:text-blue-600 transition duration-200">
+            Vegetables
+          </button>
+        </div>
+
       </div>
 
       {/* GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {products.map((product) => (
-          <div 
-            key={product.id} 
+          <div
+            key={product.id}
             className="group relative bg-white border border-gray-100 rounded-[35px] p-5 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-50/50 flex flex-col h-full"
           >
 
