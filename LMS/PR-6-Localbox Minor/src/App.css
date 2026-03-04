@@ -1,0 +1,149 @@
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: #f7f3ec; 
+  color: #333;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #581000; 
+}
+
+.container {
+  background: #f3eee6; /* warm beige to match palette */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.form-row input,
+.form-row select {
+  flex: 1 1 120px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-row select {
+  appearance: none;
+}
+
+.form-row button {
+  flex: 0 0 auto;
+}
+
+.form-row input[type='text'] {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-row button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #581000; 
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-row button:hover {
+  background: #400b00; 
+}
+
+.student-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.student-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.student-item.grid {
+  grid-template-columns: 2fr 3fr 2fr 1fr 1fr;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* header row style could be added if needed */
+.student-list .header {
+  font-weight: 600;
+  background: #e8e2d7;
+}
+
+.student-item:nth-child(even) {
+  background: #fafafa;
+}
+
+.student-item:last-child {
+  border-bottom: none;
+}
+
+.student-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #581000;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.actions button:hover {
+  background: rgba(88, 16, 0, 0.1);
+}
+
+.actions .delete {
+  color: #c0392b;
+}
+
+.actions .delete:hover {
+  background: rgba(192, 57, 43, 0.1);
+}
+
+.text-center {
+  text-align: center;
+}

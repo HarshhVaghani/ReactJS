@@ -1,40 +1,68 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Star, Heart, ShoppingBag, Eye, RefreshCw } from "lucide-react";
+import FooterSection from "../component/FooterSection";
+
+// use shared product data
+import { products as allProducts } from "../data/products";
+
 
 export default function CategoryPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
+  // simple cart/wishlist state to make buttons functional
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+
+  // derive categories from data
+  const categoryCounts = allProducts.reduce((acc, p) => {
+    acc[p.category] = (acc[p.category] || 0) + 1;
+    return acc;
+  }, {});
+
   const categories = [
-    { id: "all", name: "All Products", count: 248 },
-    { id: "electronics", name: "Electronics", count: 45 },
-    { id: "clothing", name: "Clothing", count: 89 },
-    { id: "home", name: "Home & Garden", count: 67 },
-    { id: "books", name: "Books", count: 47 },
+    { id: "all", name: "All Products", count: allProducts.length },
+    ...Object.entries(categoryCounts).map(([cat, cnt]) => ({ id: cat, name: cat, count: cnt })),
   ];
 
-  const [products] = useState(() =>
-    Array.from({ length: 20 }, (_, i) => ({
-      id: i + 1,
-      name: `Product ${i + 1}`,
-      price: Math.random() * 500 + 50,
-      image: `https://via.placeholder.com/250x250?text=Product${i + 1}`,
-      category: categories[Math.floor(Math.random() * (categories.length - 1)) + 1]
-        .id,
-    }))
-  );
+  const products = allProducts;
+
 
   const filteredProducts = products.filter(
-    (product) =>
-      (selectedCategory === "all" || product.category === selectedCategory) &&
-      product.price >= priceRange[0] &&
-      product.price <= priceRange[1]
+    (product) => {
+      const priceNum = parseFloat(product.price.replace(/[^0-9.]/g, ''));
+      return (
+        (selectedCategory === "all" || product.category === selectedCategory) &&
+        priceNum >= priceRange[0] &&
+        priceNum <= priceRange[1]
+      );
+    }
   );
+
+  // handlers for button clicks
+  const handleAddToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+    console.log('added to cart', product);
+  };
+  const handleAddToWishlist = (product) => {
+    setWishlist((prev) => [...prev, product]);
+    console.log('added to wishlist', product);
+  };
+  const handleView = (product) => {
+    alert(`Viewing ${product.name}`);
+  };
+  const handleRefresh = (product) => {
+    console.log('refresh/compare', product);
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Shop by Category</h1>
+        <h1 className="text-3xl font-bold mb-2">Shop by Category</h1>
+        <p className="text-sm text-gray-600 mb-6">
+          Cart: {cart.length} items | Wishlist: {wishlist.length} items
+        </p>
 
         <div className="flex gap-8">
           {/* Sidebar Filters */}
@@ -101,27 +129,103 @@ export default function CategoryPage() {
             <p className="text-gray-600 mb-6">
               Showing {filteredProducts.length} products
             </p>
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow overflow-hidden"
+                  className="group relative bg-white border border-gray-100 rounded-[35px] p-5 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-50/50 flex flex-col h-full"
                 >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-800 mb-2">
+                  {/* 1. TOP-LEFT VERTICAL TAG */}
+                  {product.tag && (
+                    <div className="absolute top-6 left-6 flex flex-col gap-0.5 z-20 pointer-events-none">
+                      {product.tag.split('').map((char, i) => (
+                        <span
+                          key={i}
+                          className="text-[11px] font-black text-gray-300 leading-none uppercase tracking-tighter block text-center"
+                        >
+                          {char}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* 2. IMAGE AREA & SLIDE-UP ACTIONS */}
+                  <div className="relative aspect-square bg-[#F8F9FB] rounded-[28px] overflow-hidden flex items-center justify-center mb-6">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      {/* Primary Image */}
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="absolute w-full h-full object-contain p-6 transition-all duration-700 group-hover:opacity-0 group-hover:scale-105"
+                      />
+                      {/* Hover Image */}
+                      <img
+                        src={product.hoverImage}
+                        alt={product.name}
+                        className="absolute w-full h-full object-contain p-6 opacity-0 scale-95 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110"
+                      />
+                    </div>
+
+                    {/* CENTERED ACTION BAR */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                      <button
+                        onClick={() => handleView(product)}
+                        className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all"
+                      >
+                        <Eye size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleRefresh(product)}
+                        className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all"
+                      >
+                        <RefreshCw size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleAddToWishlist(product)}
+                        className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all"
+                      >
+                        <Heart size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleAddToCart(product)}
+                        className="p-2.5 bg-[#6C7FD8] text-white rounded-lg shadow-sm hover:bg-slate-800 transition-all"
+                      >
+                        <ShoppingBag size={16} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 3. PRODUCT INFORMATION */}
+                  <div className="px-1 grow flex flex-col">
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-[12px] text-gray-400 font-medium tracking-tight capitalize">
+                        {product.category || 'Category'}
+                      </span>
+                      <div className="flex text-orange-400 gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={12}
+                            fill={i < product.rating ? "currentColor" : "none"}
+                            className={i < product.rating ? "" : "text-gray-200"}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <h4 className="text-[16px] font-bold text-slate-800 leading-snug mb-3 h-11 line-clamp-2">
                       {product.name}
-                    </h3>
-                    <p className="text-lg font-bold text-blue-600">
-                      ${product.price.toFixed(2)}
-                    </p>
-                    <button className="w-full mt-3 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors">
-                      Add to Cart
-                    </button>
+                    </h4>
+
+                    <div className="mt-auto flex justify-between items-center pt-4 border-t border-gray-50">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl font-black text-slate-800">{product.price}</span>
+                        <span className="text-sm text-gray-400 line-through font-medium">{product.oldPrice}</span>
+                      </div>
+                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">
+                        {product.stock}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -129,6 +233,7 @@ export default function CategoryPage() {
           </div>
         </div>
       </div>
+      <FooterSection />
     </div>
   );
 }

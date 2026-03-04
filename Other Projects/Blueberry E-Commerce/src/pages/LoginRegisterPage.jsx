@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import FooterSection from "../component/FooterSection";
 
 export default function LoginRegisterPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -147,6 +148,7 @@ export default function LoginRegisterPage() {
           </div>
         )}
       </div>
+      <FooterSection />
     </div>
   );
 }

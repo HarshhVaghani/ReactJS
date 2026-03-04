@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Trash2, Plus, Minus } from "lucide-react";
+import FooterSection from "../component/FooterSection";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([
@@ -171,6 +172,7 @@ export default function CartPage() {
           </div>
         )}
       </div>
+      <FooterSection />
     </div>
   );
 }

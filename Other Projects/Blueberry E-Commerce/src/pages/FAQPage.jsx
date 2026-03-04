@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import FooterSection from "../component/FooterSection";
 
 export default function FAQPage() {
   const [openItems, setOpenItems] = useState({});
@@ -177,6 +178,7 @@ export default function FAQPage() {
           </a>
         </div>
       </div>
+      <FooterSection />
     </div>
   );
 }

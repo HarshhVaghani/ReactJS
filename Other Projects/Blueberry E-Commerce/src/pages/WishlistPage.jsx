@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Heart, Trash2, ShoppingCart } from "lucide-react";
+import FooterSection from "../component/FooterSection";
 
 export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState([
@@ -114,6 +115,7 @@ export default function WishlistPage() {
           </div>
         )}
       </div>
+      <FooterSection />
     </div>
   );
 }

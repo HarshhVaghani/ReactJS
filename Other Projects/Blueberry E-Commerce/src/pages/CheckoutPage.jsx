@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FooterSection from "../component/FooterSection";
 
 export default function CheckoutPage() {
   const [step, setStep] = useState(1);
@@ -356,6 +357,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
+      <FooterSection />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import FooterSection from "../component/FooterSection";
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -230,6 +231,7 @@ export default function ContactUsPage() {
           </div>
         </div>
       </div>
+      <FooterSection />
     </div>
   );
 }

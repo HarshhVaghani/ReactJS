@@ -1,4 +1,5 @@
 import { Users, Award, Globe, Heart } from "lucide-react";
+import FooterSection from "../component/FooterSection";
 
 export default function AboutUsPage() {
   const values = [
@@ -197,6 +198,7 @@ export default function AboutUsPage() {
           </div>
         </div>
       </div>
+      <FooterSection />
     </div>
   );
 }

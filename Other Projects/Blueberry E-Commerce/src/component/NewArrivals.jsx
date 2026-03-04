@@ -1,117 +1,33 @@
 import React, { useState } from 'react';
 import { Star, Heart, ShoppingBag, Eye, RefreshCw } from 'lucide-react';
 
-import Groundnutoil from "../assets/newarrival/groundnutoil.jpg";
-import GroundnutoilHover from "../assets/newarrival/groundoiolhover.jpg";
+// use centralized product data
+import { products as allProducts } from '../data/products';
 
-import Juice from "../assets/newarrival/juiceroute.jpg";
-import JuiceHover from "../assets/newarrival/juiceroutehover.jpg";
+// any category tabs are optional; we can derive from products if needed
 
-import BananaChips from "../assets/newarrival/bananasnackpack.jpg";
-import BananaChipsHover from "../assets/newarrival/bananasnackpackhover.jpg";
-
-import PotatoChips from "../assets/newarrival/potatocrunch.jpg";
-import PotatoChipsHover from "../assets/newarrival/potatocrunchhover.jpg";
-
-import BlackPepper from "../assets/newarrival/blackpepperspice.jpg";
-import BlackPepperHover from "../assets/newarrival/blackpeppespicehover.jpg";
-
-import Cardamon from "../assets/newarrival/cardamon.jpg";
-import CardamonHover from "../assets/newarrival/cardamonhover.jpg";
-
-import ChilliFlakes from "../assets/newarrival/chilliflakes.jpg";
-import ChilliFlakesHover from "../assets/newarrival/chillflakeshover.jpg";
-
-import TomatoKetchup from "../assets/newarrival/tometoketchup.jpg";
-import TomatoKetchupHover from "../assets/newarrival/tometoetchuphover.jpg";
-
-const categories = ['All Products', 'Juices & Drinks', 'Snacks & Sweets', 'Spices & Sauces'];
-
-const products = [
-  {
-    id: 1,
-    tag: "NEW",
-    title: "Ground Nuts Oil Packs",
-    price: "$12.00",
-    oldPrice: "$15.00",
-    stock: "In Stock",
-    image: Groundnutoil,
-    hoverImage: GroundnutoilHover,
-  },
-  {
-    id: 2,
-    tag: "HOT",
-    title: "Organic Litchi Juice Pack",
-    price: "$18.00",
-    oldPrice: "$22.00",
-    stock: "In Stock",
-    image: Juice,
-    hoverImage: JuiceHover,
-  },
-  {
-    id: 3,
-    tag: "SALE",
-    title: "Crunchy Banana Chips",
-    price: "$9.00",
-    oldPrice: "$12.00",
-    stock: "Limited",
-    image: BananaChips,
-    hoverImage: BananaChipsHover,
-  },
-  {
-    id: 4,
-    tag: "NEW",
-    title: "Crunchy Potato Chips",
-    price: "$14.00",
-    oldPrice: "$18.00",
-    stock: "In Stock",
-    image: PotatoChips,
-    hoverImage: PotatoChipsHover,
-  },
-  {
-    id: 5,
-    tag: "HOT",
-    title: "Black Pepper Spice Pack",
-    price: "$20.00",
-    oldPrice: "$26.00",
-    stock: "In Stock",
-    image: BlackPepper,
-    hoverImage: BlackPepperHover,
-  },
-  {
-    id: 6,
-    tag: "NEW",
-    title: "Small Cardamom Spice Pack",
-    price: "$10.00",
-    oldPrice: "$14.00",
-    stock: "In Stock",
-    image: Cardamon,
-    hoverImage: CardamonHover,
-  },
-  {
-    id: 7,
-    tag: "NEW",
-    title: "Chilli Flakes Pack",
-    price: "$10.00",
-    oldPrice: "$14.00",
-    stock: "In Stock",
-    image: ChilliFlakes,
-    hoverImage: ChilliFlakesHover,
-  },
-  {
-    id: 8,
-    tag: "NEW",
-    title: "Tomato Ketchup Pack",
-    price: "$10.00",
-    oldPrice: "$14.00",
-    stock: "In Stock",
-    image: TomatoKetchup,
-    hoverImage: TomatoKetchupHover,
-  },
-];
+// only show items marked as new arrivals in shared data
+const products = allProducts.filter((p) => p.category === 'New Arrivals');
 
 export default function NewArrivals() {
   const [activeTab, setActiveTab] = useState('All Products');
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+
+  const handleAddToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+    console.log('added to cart', product);
+  };
+  const handleAddToWishlist = (product) => {
+    setWishlist((prev) => [...prev, product]);
+    console.log('added to wishlist', product);
+  };
+  const handleView = (product) => {
+    alert(`Viewing ${product.title}`);
+  };
+  const handleRefresh = (product) => {
+    console.log('refresh/compare', product);
+  };
 
   return (
     <section className="max-w-[1440px] mx-auto px-10 py-20 font-sans">
@@ -196,16 +112,28 @@ export default function NewArrivals() {
 
               {/* ACTION BUTTONS */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                <button className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-brand-blue hover:text-white transition-all">
+                <button
+                  onClick={() => handleView(product)}
+                  className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-brand-blue hover:text-white transition-all"
+                >
                   <Eye size={16} />
                 </button>
-                <button className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-brand-blue hover:text-white transition-all">
+                <button
+                  onClick={() => handleRefresh(product)}
+                  className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-brand-blue hover:text-white transition-all"
+                >
                   <RefreshCw size={16} />
                 </button>
-                <button className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-brand-blue hover:text-white transition-all">
+                <button
+                  onClick={() => handleAddToWishlist(product)}
+                  className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-brand-blue hover:text-white transition-all"
+                >
                   <Heart size={16} />
                 </button>
-                <button className="p-2.5 bg-brand-blue text-white rounded-lg shadow-sm hover:bg-slate-800 transition-all">
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className="p-2.5 bg-brand-blue text-white rounded-lg shadow-sm hover:bg-slate-800 transition-all"
+                >
                   <ShoppingBag size={16} />
                 </button>
               </div>
