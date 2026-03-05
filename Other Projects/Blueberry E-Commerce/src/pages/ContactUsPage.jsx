@@ -89,11 +89,11 @@ export default function ContactUsPage() {
                   <p className="text-gray-700">
                     Blueberry E-Commerce
                     <br />
-                    123 Commerce Street
+                    971 Lajamni, Motavarachha
                     <br />
-                    San Francisco, CA 94105
+                    Surat, Gujarat 394101
                     <br />
-                    United States
+                    India
                   </p>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function ContactUsPage() {
               width="100%"
               height="100%"
               frameBorder="0"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.048258918046!2d-122.39805752346047!3d37.78994817175658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807a4b5c5c5d%3A0x123456789!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890123"
+              src="https://www.google.com/maps?q=Surat%2C%20Gujarat%2C%20India&output=embed"
               allowFullScreen=""
               loading="lazy"
             ></iframe>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Heart, ShoppingBag, Eye, RefreshCw } from 'lucide-react';
+import { useCartWishlist } from '../context/CartWishlistContext';
 import ChocolateProduct from "../assets/productImage/chocolate.jpg"
 import Juice from "../assets/productImage/juice.jpg"
 import Almond from "../assets/productImage/almond.jpg"
@@ -15,6 +16,24 @@ const products = [
 ];
 
 export default function ProductGrid() {
+    const { addToCart, addToWishlist } = useCartWishlist();
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+    };
+
+    const handleAddToWishlist = (product) => {
+        addToWishlist(product);
+    };
+
+    const handleView = (product) => {
+        alert(`Viewing ${product.name}`);
+    };
+
+    const handleRefresh = (product) => {
+        console.log('refresh/compare', product);
+    };
+
     return (
         <section className="max-w-[1440px] mx-auto px-10 py-12 font-sans bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
@@ -56,26 +75,38 @@ export default function ProductGrid() {
 
                             {/* CENTERED ACTION BAR (Exact Template Match) */}
                             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                                <button className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all">
+                                <button 
+                                    onClick={() => handleView(product)}
+                                    className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all"
+                                >
                                     <Eye size={16} />
                                 </button>
-                                <button className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all">
+                                <button 
+                                    onClick={() => handleRefresh(product)}
+                                    className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all"
+                                >
                                     <RefreshCw size={16} />
                                 </button>
-                                <button className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all">
+                                <button 
+                                    onClick={() => handleAddToWishlist(product)}
+                                    className="p-2.5 bg-white text-slate-700 rounded-lg shadow-sm hover:bg-[#6C7FD8] hover:text-white transition-all"
+                                >
                                     <Heart size={16} />
                                 </button>
-                                <button className="p-2.5 bg-[#6C7FD8] text-white rounded-lg shadow-sm hover:bg-slate-800 transition-all">
+                                <button 
+                                    onClick={() => handleAddToCart(product)}
+                                    className="p-2.5 bg-[#6C7FD8] text-white rounded-lg shadow-sm hover:bg-slate-800 transition-all"
+                                >
                                     <ShoppingBag size={16} />
                                 </button>
                             </div>
                         </div>
 
                         {/* 3. PRODUCT INFORMATION */}
-                        <div className="px-1 flex-grow flex flex-col">
+                        <div className="px-1 grow flex flex-col">
                             <div className="flex justify-between items-center mb-1.5">
-                                <span className="text-[12px] text-gray-400 font-medium tracking-tight">
-                                    {product.category}
+                                <span className="text-[12px] text-gray-400 font-medium tracking-tight capitalize">
+                                    {product.category || 'Category'}
                                 </span>
                                 <div className="flex text-orange-400 gap-0.5">
                                     {[...Array(5)].map((_, i) => (

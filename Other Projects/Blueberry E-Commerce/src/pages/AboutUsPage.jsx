@@ -1,204 +1,245 @@
-import { Users, Award, Globe, Heart } from "lucide-react";
+import { ChevronRight, Headset, RotateCcw, ShieldCheck, Truck } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import FooterSection from "../component/FooterSection";
+import One from "../assets/aboutus/one.jpg";
+import Two from "../assets/aboutus/two.jpg";
+import Three from "../assets/aboutus/three.jpg";
+import OurStory from "../assets/ourstore.jpg";
+import "swiper/css";
 
 export default function AboutUsPage() {
-  const values = [
+  const services = [
     {
-      icon: Heart,
-      title: "Customer First",
-      description: "We prioritize customer satisfaction in everything we do.",
+      icon: Truck,
+      title: "Free Shipping",
+      description: "Free shipping on all US order or above $200",
     },
     {
-      icon: Award,
-      title: "Quality Products",
-      description: "Only the best products from trusted manufacturers.",
+      icon: Headset,
+      title: "24x7 Support",
+      description: "Contact us 24 hours a day, 7 days a week",
     },
     {
-      icon: Globe,
-      title: "Global Reach",
-      description: "Delivering excellence to customers worldwide.",
+      icon: RotateCcw,
+      title: "30 Days Return",
+      description: "Simply return it within 30 days for an exchange",
     },
     {
-      icon: Users,
-      title: "Community Driven",
-      description: "Building a community of satisfied customers.",
+      icon: ShieldCheck,
+      title: "Payment Secure",
+      description: "Contact us 24 hours a day, 7 days a week",
     },
   ];
 
   const team = [
     {
-      name: "John Smith",
-      role: "Founder & CEO",
-      image: "https://via.placeholder.com/200x200?text=John",
+      name: "Juliat Hilson",
+      role: "Team Leader",
+      image: Three,
     },
     {
-      name: "Sarah Johnson",
-      role: "Chief Operating Officer",
-      image: "https://via.placeholder.com/200x200?text=Sarah",
+      name: "Elena Wilson",
+      role: "Manager",
+      image: One,
     },
     {
-      name: "Michael Chen",
-      role: "Head of Products",
-      image: "https://via.placeholder.com/200x200?text=Michael",
+      name: "Mario Bisop",
+      role: "CEO",
+      image: Two,
     },
     {
-      name: "Emily Davis",
-      role: "Customer Success Lead",
-      image: "https://via.placeholder.com/200x200?text=Emily",
+      name: "Juliat Hilson",
+      role: "Team Leader",
+      image: Three,
+    },
+    {
+      name: "Elena Wilson",
+      role: "Manager",
+      image: One,
+    },
+    {
+      name: "Mario Bisop",
+      role: "CEO",
+      image: Two,
     },
   ];
 
+  const teamSlides = [...team, ...team];
+
+  const storyPetals = [
+    { top: "0%", left: "24%" },
+    { top: "22%", left: "0%" },
+    { top: "22%", left: "48%" },
+    { top: "48%", left: "24%" },
+  ];
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
-          <p className="text-xl text-blue-100">
-            Bringing quality products and exceptional service to customers worldwide
+    <div className="min-h-screen bg-[#f7f7fa]">
+      <div className="bg-[#f3f4f8] border-y border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <h1 className="text-lg font-semibold text-slate-700">About Us</h1>
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <a href="#" className="hover:text-indigo-500">Home</a>
+            <ChevronRight size={14} />
+            <span>About Us</span>
+          </div>
+        </div>
+      </div>
+
+      <section className="max-w-7xl mx-auto px-4 py-16 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative mx-auto w-[360px] h-[340px] sm:w-[470px] sm:h-[440px]">
+            {storyPetals.map((petal, index) => (
+              <div
+                key={index}
+                className="absolute w-44 h-44 sm:w-60 sm:h-60 rounded-full overflow-hidden border-[5px] border-white shadow-md"
+                style={{ top: petal.top, left: petal.left }}
+              >
+                <img src={OurStory} alt="Farm fresh" className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <h2 className="text-4xl font-bold text-slate-700 leading-tight mb-3">
+              About The <span className="text-indigo-500">BlueBerry</span>
+            </h2>
+            <p className="italic text-xl text-slate-600 font-medium mb-6">
+              Farm-fresh Goodness, just a click Away.
+            </p>
+
+            <p className="text-gray-500 leading-8 mb-4">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, rem! Et
+              obcaecati rem nulla, aut assumenda unde minima earum distinctio porro excepturi.
+            </p>
+            <p className="text-gray-500 leading-8 mb-8">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, rem! Et
+              obcaecati rem nulla, aut assumenda unde minima earum distinctio porro excepturi.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-[#eff1f7] rounded-2xl px-6 py-5 text-center">
+                <p className="text-4xl font-black text-slate-700">200 +</p>
+                <p className="text-gray-500 text-sm mt-2">vendors</p>
+              </div>
+              <div className="bg-[#eff1f7] rounded-2xl px-6 py-5 text-center">
+                <p className="text-4xl font-black text-slate-700">654k +</p>
+                <p className="text-gray-500 text-sm mt-2">Sales</p>
+              </div>
+              <div className="bg-[#eff1f7] rounded-2xl px-6 py-5 text-center">
+                <p className="text-4xl font-black text-slate-700">587k +</p>
+                <p className="text-gray-500 text-sm mt-2">Customers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 pb-16">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold text-slate-700">
+            Our <span className="text-indigo-500">Services</span>
+          </h2>
+          <p className="text-gray-500 mt-2">
+            Customer service should not be a department. it should be the entire company.
           </p>
         </div>
-      </div>
 
-      {/* Our Story */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-            <p className="text-gray-700 text-lg leading-relaxed mb-4">
-              Founded in 2020, Blueberry E-Commerce has grown from a small startup
-              to a trusted online marketplace serving customers across the globe.
-            </p>
-            <p className="text-gray-700 text-lg leading-relaxed mb-4">
-              Our mission is simple: provide high-quality products at competitive
-              prices while delivering exceptional customer service. We believe that
-              everyone deserves access to premium products without breaking the bank.
-            </p>
-            <p className="text-gray-700 text-lg leading-relaxed">
-              Over the years, we've built strong relationships with manufacturers,
-              suppliers, and most importantly, our customers. This foundation has
-              allowed us to continuously improve and expand our offerings.
-            </p>
-          </div>
-          <div>
-            <img
-              src="https://via.placeholder.com/500x400?text=Our+Story"
-              alt="Our Story"
-              className="rounded-lg shadow-lg"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Core Values */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow p-6 text-center hover:shadow-lg transition-shadow"
-                >
-                  <Icon className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <a
+                key={index}
+                href="#"
+                className="block bg-white border border-gray-200 rounded-2xl p-7 text-center hover:shadow-md transition-shadow"
+              >
+                <div className="w-12 h-12 rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center mx-auto mb-4">
+                  <Icon size={22} />
                 </div>
-              );
-            })}
+                <h3 className="text-xl font-bold text-slate-700 mb-2">{service.title}</h3>
+                <p className="text-gray-500 text-sm leading-6">{service.description}</p>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 pb-16">
+        <div className="relative py-6">
+          <div className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full overflow-hidden border-4 border-white shadow-lg">
+            <img src={One} alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+          <div className="hidden lg:block absolute left-0 bottom-4 w-14 h-14 rounded-full overflow-hidden border-4 border-white shadow-lg">
+            <img src={Three} alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+          <div className="hidden lg:block absolute right-8 top-8 w-14 h-14 rounded-full overflow-hidden border-4 border-white shadow-lg">
+            <img src={Two} alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+          <div className="hidden lg:block absolute right-0 bottom-10 w-14 h-14 rounded-full overflow-hidden border-4 border-white shadow-lg">
+            <img src={One} alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+
+          <div className="relative z-10 mx-auto max-w-4xl flex flex-col lg:flex-row items-center gap-6">
+            <p className="hidden lg:block [writing-mode:vertical-rl] rotate-180 text-gray-200 font-extrabold text-5xl tracking-tight">
+              Testimonials
+            </p>
+
+            <div className="flex-1 bg-white border border-gray-200 rounded-[28px] p-5 sm:p-6 shadow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 items-center">
+                <div className="rounded-3xl overflow-hidden">
+                  <img src={Two} alt="Nikki Albart" className="w-full h-[260px] object-cover" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-slate-700">Nikki Albart</h3>
+                  <p className="text-gray-500 mt-1 mb-4">(Team Leader)</p>
+                  <p className="text-gray-600 text-lg leading-8 border border-gray-200 rounded-2xl p-4">
+                    “Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto at sint
+                    eligendi possimus perspiciatis asperiores reiciendis hic amet alias aut quaerat
+                    maiores blanditiis.”
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Stats */}
-      <div className="bg-blue-600 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold mb-2">50K+</div>
-              <p className="text-lg">Happy Customers</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">10K+</div>
-              <p className="text-lg">Products Available</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">150+</div>
-              <p className="text-lg">Countries Served</p>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">4.8★</div>
-              <p className="text-lg">Average Rating</p>
-            </div>
-          </div>
+      <section className="max-w-7xl mx-auto px-4 pb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-700 leading-tight">
+            Our <span className="text-indigo-500">Team</span>
+          </h2>
+          <p className="mt-3 text-gray-500 text-lg">Meet out expert team members.</p>
         </div>
-      </div>
 
-      {/* Team */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {team.map((member, index) => (
-            <div key={index} className="text-center">
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg"
-              />
-              <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-              <p className="text-gray-600">{member.role}</p>
-            </div>
+        <Swiper
+          modules={[Autoplay]}
+          loop={true}
+          autoplay={{ delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          spaceBetween={28}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {teamSlides.map((member, index) => (
+            <SwiperSlide key={`${member.name}-${index}`}>
+              <div className="text-center">
+                <div className="rounded-[22px] overflow-hidden bg-gray-200 aspect-[0.95] mb-4">
+                  <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-3xl font-bold text-slate-700">{member.name}</h3>
+                <p className="text-2xl text-gray-500 mt-1">{member.role}</p>
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
-      </div>
+        </Swiper>
+      </section>
 
-      {/* Why Choose Us */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-3">Wide Selection</h3>
-              <p className="text-gray-600">
-                Browse through thousands of quality products across various categories.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-3">Competitive Pricing</h3>
-              <p className="text-gray-600">
-                Get the best prices without compromising on quality or authenticity.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-3">Fast Shipping</h3>
-              <p className="text-gray-600">
-                Quick and reliable shipping options to deliver your orders on time.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-3">Secure Payments</h3>
-              <p className="text-gray-600">
-                Your payment information is protected with the latest security standards.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-3">24/7 Support</h3>
-              <p className="text-gray-600">
-                Our customer support team is always ready to help with any questions.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-bold mb-3">Easy Returns</h3>
-              <p className="text-gray-600">
-                Hassle-free returns within 30 days if you're not satisfied.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <FooterSection />
+      <FooterSection showBrandsDirectory />
     </div>
   );
 }

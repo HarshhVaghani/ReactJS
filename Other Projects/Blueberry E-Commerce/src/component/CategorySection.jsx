@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import category from "../assets/category.jpg";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -22,6 +22,34 @@ const categories = [
 ];
 
 export default function CategorySection() {
+    const initialDealSeconds = useMemo(() => {
+        return (421 * 24 * 60 * 60) + (5 * 60 * 60) + (21 * 60) + 42;
+    }, []);
+
+    const [remainingSeconds, setRemainingSeconds] = useState(initialDealSeconds);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRemainingSeconds((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const countdown = useMemo(() => {
+        const days = Math.floor(remainingSeconds / (24 * 60 * 60));
+        const hours = Math.floor((remainingSeconds % (24 * 60 * 60)) / (60 * 60));
+        const mins = Math.floor((remainingSeconds % (60 * 60)) / 60);
+        const secs = remainingSeconds % 60;
+
+        return {
+            days: days.toString(),
+            hours: hours.toString().padStart(2, '0'),
+            mins: mins.toString().padStart(2, '0'),
+            secs: secs.toString().padStart(2, '0'),
+        };
+    }, [remainingSeconds]);
+
     return (
         <section className="max-w-[1440px] mx-auto px-10 py-20 relative overflow-hidden font-sans">
             <div className="absolute left-130 top-30 pointer-events-none select-none">
@@ -80,10 +108,10 @@ export default function CategorySection() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <TimerBox value="421" label="Days" />
-                    <TimerBox value="05" label="Hours" />
-                    <TimerBox value="21" label="Mins" />
-                    <TimerBox value="42" label="Secs" />
+                    <TimerBox value={countdown.days} label="Days" />
+                    <TimerBox value={countdown.hours} label="Hours" />
+                    <TimerBox value={countdown.mins} label="Mins" />
+                    <TimerBox value={countdown.secs} label="Secs" />
                 </div>
             </div>
         </section>

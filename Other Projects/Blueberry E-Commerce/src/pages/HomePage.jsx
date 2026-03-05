@@ -5,8 +5,8 @@ import PromoBanners from "../component/PromoBanner";
 import NewArrivals from "../component/NewArrivals";
 import VendorsSection from "../component/VendorsSection";
 import TestimonialsSection from "../component/TestimonialsSection";
-import GallerySection from "../component/GallerySection";
 import FooterSection from "../component/FooterSection";
+import FarmBlogSection from "../component/FarmBlogSection";
 
 export default function HomePage() {
   return (
@@ -18,7 +18,7 @@ export default function HomePage() {
       <NewArrivals />
       <VendorsSection />
       <TestimonialsSection />
-      <GallerySection />
+      <FarmBlogSection />
       <FooterSection />
     </div>
   );

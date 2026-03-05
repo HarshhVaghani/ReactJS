@@ -1,45 +1,16 @@
-import { useState } from "react";
 import { Heart, Trash2, ShoppingCart } from "lucide-react";
 import FooterSection from "../component/FooterSection";
+import { useCartWishlist } from "../context/CartWishlistContext";
 
 export default function WishlistPage() {
-  const [wishlistItems, setWishlistItems] = useState([
-    {
-      id: 1,
-      name: "Premium Headphones",
-      price: 129.99,
-      image: "https://via.placeholder.com/200x200?text=Headphones",
-      rating: 4.5,
-      inStock: true,
-    },
-    {
-      id: 2,
-      name: "Wireless Mouse",
-      price: 45.99,
-      image: "https://via.placeholder.com/200x200?text=Mouse",
-      rating: 4.2,
-      inStock: true,
-    },
-    {
-      id: 3,
-      name: "USB-C Cable",
-      price: 15.99,
-      image: "https://via.placeholder.com/200x200?text=Cable",
-      rating: 4.8,
-      inStock: false,
-    },
-  ]);
-
-  const removeFromWishlist = (id) => {
-    setWishlistItems(wishlistItems.filter((item) => item.id !== id));
-  };
+  const { wishlist, removeFromWishlist, moveToCart } = useCartWishlist();
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-3xl font-bold mb-8">My Wishlist</h1>
 
-        {wishlistItems.length === 0 ? (
+        {wishlist.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-8 text-center">
             <Heart size={48} className="mx-auto text-gray-300 mb-4" />
             <p className="text-xl text-gray-600 mb-4">Your wishlist is empty</p>
@@ -49,7 +20,7 @@ export default function WishlistPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {wishlistItems.map((item) => (
+            {wishlist.map((item) => (
               <div
                 key={item.id}
                 className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow overflow-hidden"
@@ -75,7 +46,7 @@ export default function WishlistPage() {
 
                   <div className="flex items-center justify-between mb-3">
                     <p className="text-lg font-bold text-blue-600">
-                      ${item.price.toFixed(2)}
+                      {item.price}
                     </p>
                     <span className="text-sm text-yellow-500">
                       ⭐ {item.rating}
@@ -92,12 +63,8 @@ export default function WishlistPage() {
 
                   <div className="flex gap-2">
                     <button
-                      disabled={!item.inStock}
-                      className={`flex-1 py-2 rounded font-semibold transition-colors flex items-center justify-center gap-2 ${
-                        item.inStock
-                          ? "bg-blue-600 text-white hover:bg-blue-700"
-                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                      }`}
+                      onClick={() => moveToCart(item)}
+                      className="flex-1 py-2 bg-blue-600 text-white rounded font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
                     >
                       <ShoppingCart size={16} />
                       Add to Cart

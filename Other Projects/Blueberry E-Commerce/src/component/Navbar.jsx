@@ -1,8 +1,10 @@
 import { Search, User, Heart, ShoppingCart, MapPin, LayoutGrid, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/logo.png"
+import { useCartWishlist } from '../context/CartWishlistContext';
 
 export default function Navbar() {
+  const { cart, wishlist } = useCartWishlist();
   return (
     <header className="w-full bg-white font-sans">
       <div className="max-w-[1440px] mx-auto px-10 py-5 flex items-center justify-between">
@@ -31,10 +33,10 @@ export default function Navbar() {
             <NavItem icon={<User />} label="Account" value="Login" />
           </Link>
           <Link to="/wishlist">
-            <NavItem icon={<Heart />} label="3 Items" value="Wishlist" />
+            <NavItem icon={<Heart />} label={`${wishlist.length} Items`} value="Wishlist" />
           </Link>
           <Link to="/cart">
-            <NavItem icon={<ShoppingCart />} label="4 Items" value="Cart" />
+            <NavItem icon={<ShoppingCart />} label={`${cart.length} Items`} value="Cart" />
           </Link>
         </div>
       </div>

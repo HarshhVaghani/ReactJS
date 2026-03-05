@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Grid3x3, List, Star, Heart, ShoppingBag, Eye, RefreshCw } from "lucide-react";
 import FooterSection from "../component/FooterSection";
+import { useCartWishlist } from "../context/CartWishlistContext";
 
 // shared product list
 import { products as allProducts } from "../data/products";
@@ -11,18 +12,15 @@ export default function GridListViewPage() {
   const [viewMode, setViewMode] = useState("grid");
   const [sortBy, setSortBy] = useState("popular");
 
-  const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+  const { cart, wishlist, addToCart, addToWishlist } = useCartWishlist();
 
   const products = allProducts;
 
   const handleAddToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-    console.log('added to cart', product);
+    addToCart(product);
   };
   const handleAddToWishlist = (product) => {
-    setWishlist((prev) => [...prev, product]);
-    console.log('added to wishlist', product);
+    addToWishlist(product);
   };
   const handleView = (product) => {
     alert(`Viewing ${product.name}`);

@@ -1,29 +1,62 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Star, Heart, ShoppingBag, Eye, RefreshCw } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import FooterSection from "../component/FooterSection";
+import { useCartWishlist } from "../context/CartWishlistContext";
 
 // use shared product data
 import { products as allProducts } from "../data/products";
 
 
 export default function CategoryPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // simple cart/wishlist state to make buttons functional
-  const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+  const { cart, wishlist, addToCart, addToWishlist } = useCartWishlist();
 
   // derive categories from data
-  const categoryCounts = allProducts.reduce((acc, p) => {
-    acc[p.category] = (acc[p.category] || 0) + 1;
-    return acc;
-  }, {});
+  const categoryCounts = useMemo(
+    () =>
+      allProducts.reduce((acc, p) => {
+        acc[p.category] = (acc[p.category] || 0) + 1;
+        return acc;
+      }, {}),
+    []
+  );
 
-  const categories = [
-    { id: "all", name: "All Products", count: allProducts.length },
-    ...Object.entries(categoryCounts).map(([cat, cnt]) => ({ id: cat, name: cat, count: cnt })),
-  ];
+  const categories = useMemo(
+    () => [
+      { id: "all", name: "All Products", count: allProducts.length },
+      ...Object.entries(categoryCounts).map(([cat, cnt]) => ({
+        id: cat,
+        name: cat,
+        count: cnt,
+      })),
+    ],
+    [categoryCounts]
+  );
+
+  const getValidCategory = (categoryId) =>
+    categories.some((cat) => cat.id === categoryId) ? categoryId : "all";
+
+  const [selectedCategory, setSelectedCategory] = useState(() =>
+    getValidCategory(searchParams.get("category") || "all")
+  );
+
+  useEffect(() => {
+    const routeCategory = getValidCategory(searchParams.get("category") || "all");
+    setSelectedCategory((prev) => (prev === routeCategory ? prev : routeCategory));
+  }, [searchParams, categories]);
+
+  const handleCategoryChange = (categoryId) => {
+    const validCategory = getValidCategory(categoryId);
+    setSelectedCategory(validCategory);
+    if (validCategory === "all") {
+      setSearchParams({});
+      return;
+    }
+    setSearchParams({ category: validCategory });
+  };
 
   const products = allProducts;
 
@@ -41,12 +74,10 @@ export default function CategoryPage() {
 
   // handlers for button clicks
   const handleAddToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-    console.log('added to cart', product);
+    addToCart(product);
   };
   const handleAddToWishlist = (product) => {
-    setWishlist((prev) => [...prev, product]);
-    console.log('added to wishlist', product);
+    addToWishlist(product);
   };
   const handleView = (product) => {
     alert(`Viewing ${product.name}`);
@@ -80,7 +111,7 @@ export default function CategoryPage() {
                       name="category"
                       value={cat.id}
                       checked={selectedCategory === cat.id}
-                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      onChange={(e) => handleCategoryChange(e.target.value)}
                       className="w-4 h-4 text-blue-600"
                     />
                     <span className="ml-3 text-gray-700">
@@ -99,7 +130,7 @@ export default function CategoryPage() {
                   <input
                     type="range"
                     min="0"
-                    max="1000"
+                    max="50"
                     value={priceRange[0]}
                     onChange={(e) =>
                       setPriceRange([parseInt(e.target.value), priceRange[1]])
@@ -112,7 +143,7 @@ export default function CategoryPage() {
                   <input
                     type="range"
                     min="0"
-                    max="1000"
+                    max="50"
                     value={priceRange[1]}
                     onChange={(e) =>
                       setPriceRange([priceRange[0], parseInt(e.target.value)])

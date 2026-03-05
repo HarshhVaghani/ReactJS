@@ -1,50 +1,13 @@
 import { useState } from "react";
 import { Trash2, Plus, Minus } from "lucide-react";
 import FooterSection from "../component/FooterSection";
+import { useCartWishlist } from "../context/CartWishlistContext";
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Product 1",
-      price: 29.99,
-      quantity: 2,
-      image: "https://via.placeholder.com/150x150?text=Product1",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 49.99,
-      quantity: 1,
-      image: "https://via.placeholder.com/150x150?text=Product2",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 19.99,
-      quantity: 3,
-      image: "https://via.placeholder.com/150x150?text=Product3",
-    },
-  ]);
+  const { cart, removeFromCart, updateCartQuantity } = useCartWishlist();
 
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity <= 0) {
-      removeItem(id);
-    } else {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === id ? { ...item, quantity: newQuantity } : item
-        )
-      );
-    }
-  };
-
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+  const subtotal = cart.reduce(
+    (sum, item) => sum + parseFloat(item.price.replace(/[^0-9.]/g, '')) * (item.quantity || 1),
     0
   );
   const shipping = subtotal > 100 ? 0 : 10;
@@ -56,7 +19,7 @@ export default function CartPage() {
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
 
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-8 text-center">
             <p className="text-xl text-gray-600 mb-4">Your cart is empty</p>
             <a href="/shop" className="text-blue-600 hover:underline">
@@ -79,7 +42,7 @@ export default function CartPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {cartItems.map((item) => (
+                    {cart.map((item) => (
                       <tr key={item.id} className="border-b hover:bg-gray-50">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-4">
@@ -91,23 +54,23 @@ export default function CartPage() {
                             <span className="font-medium">{item.name}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">${item.price.toFixed(2)}</td>
+                        <td className="px-6 py-4">${parseFloat(item.price.replace(/[^0-9.]/g, '')).toFixed(2)}</td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() =>
-                                updateQuantity(item.id, item.quantity - 1)
+                                updateCartQuantity(item.id, (item.quantity || 1) - 1)
                               }
                               className="p-1 hover:bg-gray-200 rounded"
                             >
                               <Minus size={16} />
                             </button>
                             <span className="w-8 text-center">
-                              {item.quantity}
+                              {item.quantity || 1}
                             </span>
                             <button
                               onClick={() =>
-                                updateQuantity(item.id, item.quantity + 1)
+                                updateCartQuantity(item.id, (item.quantity || 1) + 1)
                               }
                               className="p-1 hover:bg-gray-200 rounded"
                             >
@@ -116,11 +79,11 @@ export default function CartPage() {
                           </div>
                         </td>
                         <td className="px-6 py-4 font-semibold">
-                          ${(item.price * item.quantity).toFixed(2)}
+                          ${(parseFloat(item.price.replace(/[^0-9.]/g, '')) * (item.quantity || 1)).toFixed(2)}
                         </td>
                         <td className="px-6 py-4">
                           <button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeFromCart(item.id)}
                             className="text-red-600 hover:text-red-700"
                           >
                             <Trash2 size={18} />
