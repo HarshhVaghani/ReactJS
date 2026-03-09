@@ -49,22 +49,22 @@ export default function CheckoutPage() {
   const total = subtotal + shipping + tax;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+    <div className="min-h-screen bg-gray-50 py-6 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-8">Checkout</h1>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Checkout Form */}
-          <div className="col-span-2">
+          <div className="lg:col-span-2">
             {/* Step Indicator */}
-            <div className="flex gap-4 mb-8">
+            <div className="grid grid-cols-3 gap-3 mb-8">
               {[1, 2, 3].map((stepNumber) => (
                 <div
                   key={stepNumber}
-                  className="flex-1 flex items-center gap-2"
+                  className="flex flex-col items-center text-center gap-2"
                 >
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold ${
                       stepNumber <= step
                         ? "bg-blue-600 text-white"
                         : "bg-gray-300 text-gray-600"
@@ -72,23 +72,22 @@ export default function CheckoutPage() {
                   >
                     {stepNumber}
                   </div>
-                  <span className="hidden sm:inline text-sm font-medium">
+                  <span className={`text-xs sm:text-sm font-medium ${stepNumber <= step ? "text-gray-800" : "text-gray-500"}`}>
                     {stepNumber === 1
                       ? "Shipping"
                       : stepNumber === 2
                       ? "Payment"
                       : "Review"}
                   </span>
-                  {stepNumber < 3 && <div className="flex-1 h-1 bg-gray-300" />}
                 </div>
               ))}
             </div>
 
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6">
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-5 sm:p-6">
               {/* Step 1: Shipping Information */}
               {step === 1 && (
                 <div>
-                  <h2 className="text-2xl font-bold mb-6">Shipping Information</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-6">Shipping Information</h2>
 
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -104,7 +103,7 @@ export default function CheckoutPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         First Name
@@ -147,7 +146,7 @@ export default function CheckoutPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         City
@@ -176,7 +175,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         ZIP Code
@@ -210,7 +209,7 @@ export default function CheckoutPage() {
               {/* Step 2: Payment Information */}
               {step === 2 && (
                 <div>
-                  <h2 className="text-2xl font-bold mb-6">Payment Information</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-6">Payment Information</h2>
 
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -241,7 +240,7 @@ export default function CheckoutPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Expiry Date
@@ -277,7 +276,7 @@ export default function CheckoutPage() {
               {/* Step 3: Review Order */}
               {step === 3 && (
                 <div>
-                  <h2 className="text-2xl font-bold mb-6">Review Your Order</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-6">Review Your Order</h2>
 
                   <div className="space-y-4 p-4 bg-gray-50 rounded-lg mb-6">
                     <div className="font-semibold mb-4">Shipping Address:</div>
@@ -299,7 +298,7 @@ export default function CheckoutPage() {
                 </div>
               )}
 
-              <div className="flex gap-4 mt-8">
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 {step > 1 && (
                   <button
                     type="button"
@@ -320,8 +319,8 @@ export default function CheckoutPage() {
           </div>
 
           {/* Order Summary */}
-          <div className="col-span-1">
-            <div className="bg-white rounded-lg shadow p-6 sticky top-4">
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg shadow p-6 lg:sticky lg:top-4">
               <h2 className="text-xl font-bold mb-6">Order Summary</h2>
 
               <div className="space-y-4 mb-6">

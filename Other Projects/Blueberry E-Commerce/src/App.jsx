@@ -16,7 +16,7 @@ function App() {
   return (
     <CartWishlistProvider>
       <Router>
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white overflow-x-hidden">
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />

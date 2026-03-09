@@ -15,16 +15,16 @@ const Footer = ({ showBrandsDirectory = false }) => {
         <footer className="bg-white font-sans text-gray-600">
             {/* Top Section: Brands Directory - Only show on home page */}
             {shouldShowBrands && (
-                <div className="border-t border-b py-10 px-4 md:px-10 lg:px-20 bg-gray-50/50">
-                    <h2 className="text-center font-bold text-gray-800 mb-8 tracking-wider">BRANDS DIRECTORY</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto text-sm">
+                <div className="border-t border-b py-8 md:py-10 px-4 sm:px-6 md:px-10 lg:px-20 bg-gray-50/50">
+                    <h2 className="text-center font-bold text-gray-800 mb-6 md:mb-8 tracking-wider">BRANDS DIRECTORY</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto text-sm">
                         {/* Jewelry & Footwear */}
-                        <div className="space-y-6">
+                        <div className="space-y-4 md:space-y-6 leading-7">
                             <p><span className="font-bold text-gray-800">Jewellery :</span> Necklace | Earrings | Couple Rings | Pendants | Crystal | Bangles | Bracelets | Nose Pin | Chain</p>
                             <p><span className="font-bold text-gray-800">Footwear :</span> Sport | Formal | Boots | Casual | Cowboy Shoes | Safety Shoes | Party Wear Shoes | Branded | First Copy</p>
                         </div>
                         {/* Fashion & Cosmetics */}
-                        <div className="space-y-6">
+                        <div className="space-y-4 md:space-y-6 leading-7">
                             <p><span className="font-bold text-gray-800">Fashion :</span> T-Shirt | Short & Jeans | Jacket | Dress & Frock | Inner Wear | Hosiery</p>
                             <p><span className="font-bold text-gray-800">Cosmetics :</span> Shampoo | Body Wash | Face Wash | Makeup Kit | Liner | Lipstick | Perfume | Body Shop | Scrub | Hair Gel | Hair Colors</p>
                         </div>
@@ -33,7 +33,7 @@ const Footer = ({ showBrandsDirectory = false }) => {
             )}
 
             {/* Main Footer Content */}
-            <div className="max-w-7xl mx-auto py-12 px-4 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="max-w-7xl mx-auto py-10 md:py-12 px-4 sm:px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
                 {/* Brand Info */}
                 <div className="lg:col-span-1">
                     <div className="flex items-center gap-2 mb-4">
@@ -50,8 +50,8 @@ const Footer = ({ showBrandsDirectory = false }) => {
                         BlueBerry is the biggest market of grocery products. Get your daily needs from our store.
                     </p>
                     <div className="flex flex-col gap-3">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="w-32 cursor-pointer" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" className="w-32 cursor-pointer" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="w-28 sm:w-32 cursor-pointer" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" className="w-28 sm:w-32 cursor-pointer" />
                     </div>
                 </div>
 
@@ -121,9 +121,9 @@ const Footer = ({ showBrandsDirectory = false }) => {
 
             {/* Bottom Bar */}
             <div className="bg-gray-50 border-t py-6">
-                <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-sm">Copyright © 2026 <span className="text-blue-500 font-semibold">BlueBerry</span> all rights reserved.</p>
-                    <div className="flex gap-2 grayscale opacity-70">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-sm text-center md:text-left">Copyright © 2026 <span className="text-blue-500 font-semibold">BlueBerry</span> all rights reserved.</p>
+                    <div className="flex flex-wrap justify-center md:justify-end gap-2 grayscale opacity-70">
                         {/* Using text icons or images for payment methods */}
                         <div className="border px-2 py-1 bg-white text-[10px] font-bold">VISA</div>
                         <div className="border px-2 py-1 bg-white text-[10px] font-bold">MasterCard</div>

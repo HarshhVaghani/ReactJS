@@ -30,19 +30,19 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="max-w-[1440px] mx-auto px-10 py-20 font-sans">
-      <div className="text-center mb-16">
+    <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-20 font-sans">
+      <div className="text-center mb-12 md:mb-16">
         <p className="text-gray-400 font-medium tracking-wide mb-2">Customer Love</p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800">
           What Our Customers Say
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8 md:gap-10">
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="bg-white border border-gray-200 rounded-[25px] p-8 hover:shadow-xl transition-all duration-300"
+            className="bg-white border border-gray-200 rounded-[20px] sm:rounded-[25px] p-6 sm:p-8 hover:shadow-xl transition-all duration-300"
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-blue to-brand-light flex items-center justify-center text-3xl">

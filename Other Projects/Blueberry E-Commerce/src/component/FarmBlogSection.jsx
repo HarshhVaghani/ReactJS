@@ -91,22 +91,22 @@ const FarmBlogSection = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen p-8 md:p-16 font-sans">
+    <div className="bg-white px-4 sm:px-6 lg:px-10 py-14 md:py-16 font-sans">
       {/* Top Section: Blog Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 mb-12 md:mb-16">
         {blogPosts.map((post, index) => (
-          <div key={index} className="relative h-[350px] group overflow-hidden rounded-[2.5rem] border-4 border-transparent hover:border-green-100 transition-all duration-300">
+          <div key={index} className="relative h-[280px] sm:h-[320px] md:h-[350px] group overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] border-4 border-transparent hover:border-green-100 transition-all duration-300">
             <img 
               src={post.image} 
               alt={post.title} 
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
             {/* White Content Box */}
-            <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm p-6 rounded-tr-[3rem] rounded-bl-[1rem] rounded-tl-[1rem] rounded-br-[1rem] shadow-lg">
+            <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 bg-white/95 backdrop-blur-sm p-4 sm:p-6 rounded-tr-[2rem] sm:rounded-tr-[3rem] rounded-bl-[1rem] rounded-tl-[1rem] rounded-br-[1rem] shadow-lg">
               <p className="text-gray-400 text-xs mb-2 uppercase tracking-wider">
                 {post.date} — <span className="lowercase">{post.tag}</span>
               </p>
-              <h3 className="text-gray-800 font-bold leading-tight text-lg">
+              <h3 className="text-gray-800 font-bold leading-tight text-base sm:text-lg">
                 {post.title}
               </h3>
             </div>
@@ -115,25 +115,26 @@ const FarmBlogSection = () => {
       </div>
 
       {/* Bottom Section: Insta Feed */}
-      <div className="relative pt-8">
+      <div className="relative pt-4 md:pt-8">
         <div
-          className={`relative overflow-hidden rounded-[2rem] select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+          className={`relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           ref={sliderRef}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
-          style={{ touchAction: 'none' }}
+          onPointerLeave={handlePointerUp}
+          style={{ touchAction: 'pan-y' }}
         >
           <div
             ref={sliderTrackRef}
-            className="flex items-center gap-6 px-2"
+            className="flex items-center gap-3 sm:gap-6 px-1 sm:px-2"
             style={{ transform: `translateX(${sliderPosition}px)` }}
           >
             {instaImages.map((img, index) => (
               <div
                 key={index}
-                className="w-52 h-52 md:w-60 md:h-60 shrink-0 rounded-[1rem] overflow-hidden"
+                className="w-36 h-36 sm:w-44 sm:h-44 md:w-60 md:h-60 shrink-0 rounded-[1rem] overflow-hidden"
               >
                 <img src={img} className="w-full h-full object-cover hover:scale-110 transition-transform duration-300" alt="Instagram feed" />
               </div>

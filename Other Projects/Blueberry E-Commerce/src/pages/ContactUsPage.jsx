@@ -33,17 +33,17 @@ export default function ContactUsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
-          <p className="text-xl text-blue-100">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+          <p className="text-base sm:text-xl text-blue-100">
             We'd love to hear from you. Send us a message!
           </p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Contact Information */}
           <div className="lg:col-span-1">
             <h2 className="text-2xl font-bold mb-8">Contact Information</h2>
@@ -103,15 +103,15 @@ export default function ContactUsPage() {
             <div className="mt-8 bg-blue-50 rounded-lg p-6">
               <h3 className="font-bold text-lg mb-4">Business Hours</h3>
               <div className="space-y-2 text-sm text-gray-700">
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
                   <span>Monday - Friday</span>
                   <span>9:00 AM - 6:00 PM EST</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
                   <span>Saturday</span>
                   <span>10:00 AM - 4:00 PM EST</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
                   <span>Sunday</span>
                   <span>Closed</span>
                 </div>
@@ -121,7 +121,7 @@ export default function ContactUsPage() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8">
               <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
 
               {submitted && (
@@ -217,9 +217,9 @@ export default function ContactUsPage() {
 
       {/* Map Section */}
       <div className="bg-white border-t py-8">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl font-bold mb-6">Visit Us</h2>
-          <div className="rounded-lg overflow-hidden shadow-lg h-96">
+          <div className="rounded-lg overflow-hidden shadow-lg h-72 sm:h-96">
             <iframe
               width="100%"
               height="100%"

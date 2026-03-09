@@ -9,19 +9,19 @@ const vendors = [
 
 export default function VendorsSection() {
   return (
-    <section className="max-w-[1440px] mx-auto px-10 py-20 font-sans">
-      <div className="text-center mb-16">
+    <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-20 font-sans">
+      <div className="text-center mb-12 md:mb-16">
         <p className="text-gray-400 font-medium tracking-wide mb-2">Trusted Partners</p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-800">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-800">
           Tag Vendors
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-8">
         {vendors.map((vendor) => (
           <div
             key={vendor.id}
-            className="flex flex-col items-center justify-center p-8 border border-gray-200 rounded-[25px] hover:shadow-lg hover:border-brand-blue transition-all duration-300 bg-white group cursor-pointer"
+            className="flex flex-col items-center justify-center p-6 sm:p-8 border border-gray-200 rounded-[20px] sm:rounded-[25px] hover:shadow-lg hover:border-brand-blue transition-all duration-300 bg-white group cursor-pointer"
           >
             <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
               {vendor.logo}

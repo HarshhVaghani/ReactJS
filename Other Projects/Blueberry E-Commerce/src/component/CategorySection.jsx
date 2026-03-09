@@ -51,17 +51,17 @@ export default function CategorySection() {
     }, [remainingSeconds]);
 
     return (
-        <section className="max-w-[1440px] mx-auto px-10 py-20 relative overflow-hidden font-sans">
-            <div className="absolute left-130 top-30 pointer-events-none select-none">
-                <h2 className="text-[120px] font-black leading-none opacity-10 uppercase tracking-tighter text-transparent"
+        <section className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-14 md:py-20 relative overflow-hidden font-sans">
+            <div className="hidden xl:block absolute left-1/3 top-16 pointer-events-none select-none">
+                <h2 className="text-[96px] font-black leading-none opacity-10 uppercase tracking-tighter text-transparent"
                     style={{ WebkitTextStroke: '2px #6C7FD8' }}>
                     Explore <br /> Categories
                 </h2>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-end gap-8 relative z-10">
-                <div className="w-full lg:w-1/3 aspect-[4/5] bg-gray-200 rounded-[40px] overflow-hidden relative group">
-                    <div className="absolute top-6 right-6 bg-black/80 text-white text-[10px] font-bold px-3 py-1 rounded-full">
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-end gap-6 lg:gap-8 relative z-10">
+                <div className="w-full lg:w-1/3 aspect-[4/5] bg-gray-200 rounded-[24px] sm:rounded-[30px] lg:rounded-[40px] overflow-hidden relative group">
+                    <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-black/80 text-white text-[10px] font-bold px-3 py-1 rounded-full">
                         50% Off
                     </div>
                     <img src={category} className="w-full h-full object-cover" />
@@ -70,7 +70,7 @@ export default function CategorySection() {
                 <div className="w-full lg:w-2/3 overflow-hidden">
                     <Swiper
                         modules={[Autoplay]}
-                        spaceBetween={16}
+                        spaceBetween={12}
                         slidesPerView={1}
                         loop={true}
                         autoplay={{
@@ -84,8 +84,8 @@ export default function CategorySection() {
                     >
                         {categories.map((cat, index) => (
                             <SwiperSlide key={index}>
-                                <div className={`${cat.bgColor} p-8 rounded-[30px] flex flex-col items-center justify-center text-center cursor-default transition-all duration-300`}>
-                                    <div className="text-4xl mb-4 transition-all duration-300 cursor-pointer transform hover:scale-110">
+                                <div className={`${cat.bgColor} p-6 md:p-8 rounded-[24px] md:rounded-[30px] flex flex-col items-center justify-center text-center cursor-default transition-all duration-300`}>
+                                    <div className="text-3xl md:text-4xl mb-4 transition-all duration-300 cursor-pointer transform hover:scale-110">
                                         {cat.icon}
                                     </div>
                                     <h4 className="text-lg font-bold text-slate-800">{cat.name}</h4>
@@ -97,9 +97,9 @@ export default function CategorySection() {
                 </div>
             </div>
 
-            <div className="mt-24 flex items-center justify-between border-b border-gray-100 pb-8">
+            <div className="mt-14 md:mt-20 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-b border-gray-100 pb-8">
                 <div className="flex flex-col">
-                    <h3 className="text-4xl font-black text-slate-800 tracking-tight">
+                    <h3 className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight">
                         Day Of The <span className="text-brand-blue">Deal</span>
                     </h3>
                     <p className="text-gray-400 text-sm font-medium mt-1">
@@ -107,7 +107,7 @@ export default function CategorySection() {
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center flex-wrap gap-2 sm:gap-3">
                     <TimerBox value={countdown.days} label="Days" />
                     <TimerBox value={countdown.hours} label="Hours" />
                     <TimerBox value={countdown.mins} label="Mins" />
@@ -120,7 +120,7 @@ export default function CategorySection() {
 
 function TimerBox({ value, label }) {
     return (
-        <div className="flex flex-col items-center justify-center bg-gray-50 border border-gray-100 rounded-xl min-w-[70px] py-3 px-2 shadow-sm">
+        <div className="flex flex-col items-center justify-center bg-gray-50 border border-gray-100 rounded-xl min-w-[58px] sm:min-w-[70px] py-3 px-2 shadow-sm">
             <span className="text-xl font-black text-slate-800 leading-none">
                 {value}
             </span>

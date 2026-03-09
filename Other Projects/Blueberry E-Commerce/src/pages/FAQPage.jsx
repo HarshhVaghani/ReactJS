@@ -112,11 +112,11 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4">
+    <div className="min-h-screen bg-gray-50 py-8 md:py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
-          <p className="text-lg text-gray-600">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h1>
+          <p className="text-base md:text-lg text-gray-600">
             Find answers to common questions about our products and services
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function FAQPage() {
         <div className="space-y-8">
           {faqData.map((section) => (
             <div key={section.id}>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
                 {section.category}
               </h2>
 
@@ -136,9 +136,9 @@ export default function FAQPage() {
                   >
                     <button
                       onClick={() => toggleItem(item.id)}
-                      className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center justify-between p-4 md:p-6 hover:bg-gray-50 transition-colors"
                     >
-                      <h3 className="text-lg font-semibold text-gray-800 text-left">
+                      <h3 className="text-base md:text-lg font-semibold text-gray-800 text-left">
                         {item.question}
                       </h3>
                       <div
@@ -151,7 +151,7 @@ export default function FAQPage() {
                     </button>
 
                     {openItems[item.id] && (
-                      <div className="px-6 py-4 bg-gray-50 border-t">
+                      <div className="px-4 md:px-6 py-4 bg-gray-50 border-t">
                         <p className="text-gray-700 leading-relaxed">
                           {item.answer}
                         </p>
@@ -165,8 +165,8 @@ export default function FAQPage() {
         </div>
 
         {/* Contact Support */}
-        <div className="mt-12 bg-blue-50 rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-3">Still have questions?</h3>
+        <div className="mt-12 bg-blue-50 rounded-lg p-6 md:p-8 text-center">
+          <h3 className="text-xl md:text-2xl font-bold mb-3">Still have questions?</h3>
           <p className="text-gray-600 mb-4">
             Can't find the answer you're looking for? Our support team is here to help.
           </p>

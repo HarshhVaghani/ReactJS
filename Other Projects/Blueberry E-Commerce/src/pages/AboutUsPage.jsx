@@ -77,7 +77,7 @@ export default function AboutUsPage() {
   return (
     <div className="min-h-screen bg-[#f7f7fa]">
       <div className="bg-[#f3f4f8] border-y border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h1 className="text-lg font-semibold text-slate-700">About Us</h1>
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <a href="#" className="hover:text-indigo-500">Home</a>
@@ -87,13 +87,13 @@ export default function AboutUsPage() {
         </div>
       </div>
 
-      <section className="max-w-7xl mx-auto px-4 py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative mx-auto w-[360px] h-[340px] sm:w-[470px] sm:h-[440px]">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+          <div className="relative mx-auto w-[280px] h-[260px] sm:w-[360px] sm:h-[340px] lg:w-[470px] lg:h-[440px]">
             {storyPetals.map((petal, index) => (
               <div
                 key={index}
-                className="absolute w-44 h-44 sm:w-60 sm:h-60 rounded-full overflow-hidden border-[5px] border-white shadow-md"
+                className="absolute w-32 h-32 sm:w-44 sm:h-44 lg:w-60 lg:h-60 rounded-full overflow-hidden border-[5px] border-white shadow-md"
                 style={{ top: petal.top, left: petal.left }}
               >
                 <img src={OurStory} alt="Farm fresh" className="w-full h-full object-cover" />
@@ -102,33 +102,33 @@ export default function AboutUsPage() {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold text-slate-700 leading-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-700 leading-tight mb-3">
               About The <span className="text-indigo-500">BlueBerry</span>
             </h2>
-            <p className="italic text-xl text-slate-600 font-medium mb-6">
+            <p className="italic text-lg sm:text-xl text-slate-600 font-medium mb-6">
               Farm-fresh Goodness, just a click Away.
             </p>
 
-            <p className="text-gray-500 leading-8 mb-4">
+            <p className="text-gray-500 leading-7 sm:leading-8 mb-4">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, rem! Et
               obcaecati rem nulla, aut assumenda unde minima earum distinctio porro excepturi.
             </p>
-            <p className="text-gray-500 leading-8 mb-8">
+            <p className="text-gray-500 leading-7 sm:leading-8 mb-8">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit, rem! Et
               obcaecati rem nulla, aut assumenda unde minima earum distinctio porro excepturi.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-[#eff1f7] rounded-2xl px-6 py-5 text-center">
-                <p className="text-4xl font-black text-slate-700">200 +</p>
+                <p className="text-3xl sm:text-4xl font-black text-slate-700">200 +</p>
                 <p className="text-gray-500 text-sm mt-2">vendors</p>
               </div>
               <div className="bg-[#eff1f7] rounded-2xl px-6 py-5 text-center">
-                <p className="text-4xl font-black text-slate-700">654k +</p>
+                <p className="text-3xl sm:text-4xl font-black text-slate-700">654k +</p>
                 <p className="text-gray-500 text-sm mt-2">Sales</p>
               </div>
               <div className="bg-[#eff1f7] rounded-2xl px-6 py-5 text-center">
-                <p className="text-4xl font-black text-slate-700">587k +</p>
+                <p className="text-3xl sm:text-4xl font-black text-slate-700">587k +</p>
                 <p className="text-gray-500 text-sm mt-2">Customers</p>
               </div>
             </div>
@@ -136,9 +136,9 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-slate-700">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-700">
             Our <span className="text-indigo-500">Services</span>
           </h2>
           <p className="text-gray-500 mt-2">
@@ -166,7 +166,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
         <div className="relative py-6">
           <div className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full overflow-hidden border-4 border-white shadow-lg">
             <img src={One} alt="Avatar" className="w-full h-full object-cover" />
@@ -189,12 +189,12 @@ export default function AboutUsPage() {
             <div className="flex-1 bg-white border border-gray-200 rounded-[28px] p-5 sm:p-6 shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 items-center">
                 <div className="rounded-3xl overflow-hidden">
-                  <img src={Two} alt="Nikki Albart" className="w-full h-[260px] object-cover" />
+                  <img src={Two} alt="Nikki Albart" className="w-full h-[220px] sm:h-[260px] object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-slate-700">Nikki Albart</h3>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-700">Nikki Albart</h3>
                   <p className="text-gray-500 mt-1 mb-4">(Team Leader)</p>
-                  <p className="text-gray-600 text-lg leading-8 border border-gray-200 rounded-2xl p-4">
+                  <p className="text-gray-600 text-base sm:text-lg leading-7 sm:leading-8 border border-gray-200 rounded-2xl p-4">
                     “Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto at sint
                     eligendi possimus perspiciatis asperiores reiciendis hic amet alias aut quaerat
                     maiores blanditiis.”
@@ -206,12 +206,12 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 pb-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-700 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-700 leading-tight">
             Our <span className="text-indigo-500">Team</span>
           </h2>
-          <p className="mt-3 text-gray-500 text-lg">Meet out expert team members.</p>
+          <p className="mt-3 text-gray-500">Meet out expert team members.</p>
         </div>
 
         <Swiper
@@ -231,8 +231,8 @@ export default function AboutUsPage() {
                 <div className="rounded-[22px] overflow-hidden bg-gray-200 aspect-[0.95] mb-4">
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-3xl font-bold text-slate-700">{member.name}</h3>
-                <p className="text-2xl text-gray-500 mt-1">{member.role}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-700">{member.name}</h3>
+                <p className="text-lg sm:text-xl text-gray-500 mt-1">{member.role}</p>
               </div>
             </SwiperSlide>
           ))}

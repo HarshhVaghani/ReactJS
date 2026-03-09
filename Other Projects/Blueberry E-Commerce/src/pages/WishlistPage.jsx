@@ -7,8 +7,8 @@ export default function WishlistPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">My Wishlist</h1>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-12 md:mb-16">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-8">My Wishlist</h1>
 
         {wishlist.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-8 text-center">
