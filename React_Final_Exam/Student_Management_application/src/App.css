@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* App-specific styles */
+.main-container {
+  min-height: calc(100vh - 64px);
+}
+
+/* Additional utility classes for the app */
+.page-container {
+  @apply mx-auto w-full max-w-7xl px-4 py-8;
+}
+
+.card-container {
+  @apply rounded-2xl border border-velvet-100 bg-white/90 shadow-velvet;
+}
+
+/* Animation utilities */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form focus states */
+input:focus,
+select:focus,
+textarea:focus {
+  @apply outline-none ring-2 ring-velvet-500/20 border-velvet-500;
+}
+
+/* Button active states */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Link hover effects */
+a {
+  @apply transition-colors duration-200;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: var(--velvet-200);
+  color: var(--velvet-900);
+}

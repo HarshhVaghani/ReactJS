@@ -1,0 +1,45 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Sneha Reddy",
+      "rollNumber": 201,
+      "courseName": "Graphic Designer",
+      "mobileNumber": "9876543210",
+      "email": "sneha.reddy@gmail.com"
+    },
+    {
+      "id": "2",
+      "name": "Vikram Joshi",
+      "rollNumber": 202,
+      "courseName": "Fashion Designer",
+      "mobileNumber": "9876543210",
+      "email": "vikramjoshi@gmail.com"
+    },
+    {
+      "id": "J6PF0Ociu4g",
+      "name": "Harsh Vaghani",
+      "rollNumber": 338,
+      "courseName": "Cyber Security",
+      "mobileNumber": "8980809800",
+      "email": "hvaghani89@gmail.com"
+    },
+    {
+      "id": "ezkvV7SANEU",
+      "name": "Paresh Rawal",
+      "rollNumber": 556,
+      "courseName": "Backend Development",
+      "mobileNumber": "9716425787",
+      "email": "pareshrawal@gmail.com"
+    },
+    {
+      "id": "zfCIL-_AFno",
+      "name": "Rakesh Bedi",
+      "rollNumber": 112,
+      "courseName": "Computer Science",
+      "mobileNumber": "8980809800",
+      "email": "NEWUSERHARSHVAGHANI@GMAIL.COM"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
